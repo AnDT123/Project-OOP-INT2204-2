@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_light"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <!--    Top bar-->
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+<!--        <com.google.android.material.circularreveal.cardview.CircularRevealCardView-->
+<!--            android:id="@+id/cardview_user"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:layout_marginEnd="15dp"-->
+<!--            android:clickable="true"-->
+<!--            android:focusable="true"-->
+<!--            app:cardCornerRadius="160dp">-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:contentDescription="user avatar"-->
+<!--                android:src="@drawable/ic_user" />-->
+
+<!--        </com.google.android.material.circularreveal.cardview.CircularRevealCardView>-->
+
+        <!--        Back-->
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardview_back_light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="TODO"
+                android:src="@drawable/ic_back_main" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </RelativeLayout>
+
+    <!--HEADER-->
+    <TextView
+        android:id="@+id/textview_light_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/nunito"
+        android:text="hệ thống ánh sáng"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/primary_light"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="00dp"
+        android:layout_marginBottom="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--DEVICES-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/textview_devices_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito"
+                    android:text="Thiết bị"
+                    android:textAlignment="center"
+                    android:textColor="@color/second_light"
+                    android:textSize="20sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/menu_devices_light"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textview_devices_light"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:hint="Tên thiết bị">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/autocompletetextview_devices_light"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_add_device_light"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/menu_devices_light"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Thêm thiết bị" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_delete_device_light"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/menu_devices_light"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="30dp"
+                    android:text="Xoá thiết bị" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/second_light"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="30dp"/>
+
+            <!--STATUS-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/textview_status_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito"
+                    android:text="Trạng thái"
+                    android:textAlignment="center"
+                    android:textColor="@color/second_light"
+                    android:textSize="20sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_status_on_light"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textview_status_light"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Bật thiết bị" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_status_off_light"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textview_status_light"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="30dp"
+                    android:text="Tắt thiết bị" />
+            </RelativeLayout>
+
+            <!--LIGHTINTENSITY-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/textview_lightIntensity_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito"
+                    android:text="Cường độ ánh sáng"
+                    android:textAlignment="center"
+                    android:textColor="@color/second_light"
+                    android:textSize="20sp" />
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/slider_lightIntensity_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textview_lightIntensity_light"
+                    android:layout_marginHorizontal="30dp"
+                    android:stepSize="1.0"
+                    android:valueFrom="0.0"
+                    android:valueTo="4.0" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_confirm_lightIntensity_light"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/slider_lightIntensity_light"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="0dp"
+                    android:text="Xác nhận" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/second_light"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="30dp"/>
+
+            <!--AUTOMODE-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/textview_autoMode_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito"
+                    android:text="Chế độ tự động"
+                    android:textAlignment="center"
+                    android:textColor="@color/second_light"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textview_autoMode_desc_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textview_autoMode_light"
+                    android:fontFamily="@font/nunito"
+                    android:text="Chế độ này sẽ tự động bật khi trời sáng và tắt khi trời tối"
+                    android:textAlignment="center" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_auto_off_light"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textview_autoMode_desc_light"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="30dp"
+                    android:text="Tắt tự động" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_auto_on_light"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textview_autoMode_desc_light"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Bật tự động" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/second_light"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="30dp"/>
+
+            <!--TIMER-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/textview_timerMode_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito"
+                    android:text="Chế độ hẹn giờ"
+                    android:textAlignment="center"
+                    android:textColor="@color/second_light"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textview_timerMode_desc_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textview_timerMode_light"
+                    android:fontFamily="@font/nunito"
+                    android:text="Thiết bị sẽ chạy từ Start tới End"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/textview_timer_start_light"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textview_timerMode_desc_light"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_alignParentStart="true"
+                    android:textAlignment="center"
+                    android:textSize="15sp"
+                    android:textStyle="bold|italic"
+                    android:text="00:00"/>
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_timer_start_light"
+                    android:backgroundTint="@color/second_light"
+                    android:text="Start"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textview_timer_start_light"
+                    android:layout_marginTop="00dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_alignParentStart="true"
+                    android:textAlignment="center"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_timer_stop_light"
+                    android:backgroundTint="@color/second_light"
+                    android:text="Stop"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textview_timer_stop_light"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:textAlignment="center"/>
+
+                <TextView
+                    android:id="@+id/textview_timer_stop_light"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textview_timerMode_desc_light"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:textAlignment="center"
+                    android:textSize="15sp"
+                    android:textStyle="bold|italic"
+                    android:text="00:00"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_timer_off_light"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/button_timer_start_light"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="30dp"
+                    android:text="Tắt hẹn giờ" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_timer_on_light"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/button_timer_start_light"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="30dp"
+                    android:text="Bật hẹn giờ" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

@@ -26,7 +26,7 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/ic_user" />
+                android:src="@drawable/ic_person" />
 
         </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
 
@@ -102,7 +102,7 @@
                     android:layout_below="@+id/imageview_light"
                     android:layout_centerHorizontal="true"
                     android:fontFamily="@font/nunito"
-                    android:text="Lights"
+                    android:text="Ánh sáng"
                     android:textColor="@color/second_light"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -144,7 +144,7 @@
                     android:layout_below="@+id/imageview_heater"
                     android:layout_centerHorizontal="true"
                     android:fontFamily="@font/nunito"
-                    android:text="Heater"
+                    android:text="Nóng lạnh"
                     android:textColor="@color/second_light"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -198,7 +198,7 @@
                     android:layout_below="@+id/imageview_temperature"
                     android:layout_centerHorizontal="true"
                     android:fontFamily="@font/nunito"
-                    android:text="Temperature"
+                    android:text="Điều hòa"
                     android:textColor="@color/second_light"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -242,7 +242,7 @@
                     android:layout_below="@+id/imageview_curtain"
                     android:layout_centerHorizontal="true"
                     android:fontFamily="@font/nunito"
-                    android:text="Curtain"
+                    android:text="Rèm cửa"
                     android:textColor="@color/second_light"
                     android:textSize="15sp"
                     android:textStyle="bold" />

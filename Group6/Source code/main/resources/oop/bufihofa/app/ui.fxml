@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -12,13 +14,12 @@
    <children>
       <TableView fx:id="table" layoutX="8.0" layoutY="81.0" onMouseClicked="#onTableClicked" prefHeight="488.0" prefWidth="574.0">
         <columns>
-          <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
-          <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Tên SP" />
-            <TableColumn fx:id="quantityColumn" prefWidth="75.0" text="Số lượng" />
-            <TableColumn fx:id="unitColumn" prefWidth="75.0" text="Đơn Vị" />
-            <TableColumn fx:id="priceColumn" prefWidth="75.0" text="Giá" />
-            <TableColumn prefWidth="87.0" text="Ngày nhập" />
-            <TableColumn prefWidth="111.0" text="Ghi chú" />
+          <TableColumn fx:id="idColumn" prefWidth="91.0" text="ID" />
+          <TableColumn fx:id="nameColumn" prefWidth="138.0" text="Tên SP" />
+            <TableColumn fx:id="quantityColumn" prefWidth="60.0" text="Số lượng" />
+            <TableColumn fx:id="unitColumn" prefWidth="68.0" text="Đơn Vị" />
+            <TableColumn fx:id="priceColumn" prefWidth="103.0" text="Giá" />
+            <TableColumn fx:id="dateColumn" prefWidth="113.0" text="Ngày nhập" />
         </columns>
       </TableView>
       <Label layoutX="600.0" layoutY="140.0" prefHeight="25.0" prefWidth="47.0" text="Tên SP">
@@ -49,7 +50,7 @@
       <Button layoutX="620.0" layoutY="360.0" mnemonicParsing="false" onAction="#onAddButtonClicked" prefHeight="25.0" prefWidth="60.0" text="Thêm" />
       <Button layoutX="700.0" layoutY="360.0" mnemonicParsing="false" onAction="#onEditButtonClicked" prefHeight="25.0" prefWidth="60.0" text="Sửa" />
       <Button layoutX="780.0" layoutY="360.0" mnemonicParsing="false" onAction="#onRemoveButtonClicked" prefHeight="25.0" prefWidth="60.0" text="Xóa" />
-      <Label layoutX="173.0" layoutY="29.0" prefHeight="36.0" prefWidth="244.0" text="Danh Sách Hàng Hóa">
+      <Label fx:id="danhsachhanghoa" layoutX="173.0" layoutY="29.0" prefHeight="36.0" prefWidth="244.0" text="Danh Sách Hàng Hóa" AnchorPane.topAnchor="29.0">
          <font>
             <Font size="25.0" />
          </font>
@@ -59,21 +60,47 @@
             <Font size="23.0" />
          </font>
       </Label>
-      <Label layoutX="820.0" layoutY="400.0" prefHeight="20.0" prefWidth="41.0" text="Lịch sử" textFill="#0b64ff">
-         <font>
-            <Font name="System Italic" size="13.0" />
-         </font>
-      </Label>
-      <TextField fx:id="nameField" layoutX="680.0" layoutY="140.0" />
-      <TextField fx:id="quantityField" layoutX="680.0" layoutY="180.0" />
-      <TextField fx:id="unitField" layoutX="680.0" layoutY="220.0" />
-      <TextField fx:id="priceField" layoutX="680.0" layoutY="260.0" />
-      <TextField layoutX="680.0" layoutY="300.0" />
+      <TextField fx:id="nameField" layoutX="680.0" layoutY="140.0" promptText="nhập tên sản phẩm" />
+      <TextField fx:id="quantityField" layoutX="680.0" layoutY="180.0" promptText="nhập số lượng" />
+      <TextField fx:id="unitField" layoutX="680.0" layoutY="220.0" promptText="nhập đơn vị" />
+      <TextField fx:id="priceField" layoutX="680.0" layoutY="260.0" promptText="nhập đơn giá" />
       <Label fx:id="errorLabel" layoutX="633.0" layoutY="333.0" prefHeight="20.0" prefWidth="200.0" textFill="RED">
          <font>
             <Font name="System Italic" size="12.0" />
          </font>
       </Label>
       <Label fx:id="idLabel" layoutX="710.0" layoutY="115.0" prefHeight="17.0" prefWidth="103.0" text="ID:1000000000" />
+      <TextField fx:id="searchField" layoutX="659.0" layoutY="441.0" onKeyTyped="#onSearchButtonClicked" promptText="search text..." />
+      <Button layoutX="818.0" layoutY="441.0" mnemonicParsing="false" onAction="#onSearchResetButtonClicked" text="Reset" />
+      <Label layoutX="591.0" layoutY="441.0" prefHeight="25.0" prefWidth="60.0" text="Tìm kiếm">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <CheckBox fx:id="tenCheck" layoutX="725.0" layoutY="495.0" mnemonicParsing="false" onAction="#tenCheckClick" text="Tên" />
+      <CheckBox fx:id="slCheck" layoutX="725.0" layoutY="520.0" mnemonicParsing="false" onAction="#slCheckClick" text="Số lượng" />
+      <CheckBox fx:id="dvCheck" layoutX="725.0" layoutY="545.0" mnemonicParsing="false" onAction="#dvCheckClick" text="Đơn Vị" />
+      <CheckBox fx:id="giaCheck" layoutX="725.0" layoutY="570.0" mnemonicParsing="false" onAction="#giaCheckClick" text="Giá" />
+      <Label layoutX="650.0" layoutY="495.0" text="Tìm Theo">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="soLuongKQ" layoutX="746.0" layoutY="472.0">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="importStorage" layoutX="653.0" layoutY="17.0" mnemonicParsing="false" onAction="#importStorageClick" text="Nhập Dữ Liệu Kho" />
+      <Button fx:id="saveStorage" layoutX="775.0" layoutY="17.0" mnemonicParsing="false" onAction="#saveStorageClick" text="Lưu Các Thay Đổi" />
+      <Button fx:id="newStorage" layoutX="558.0" layoutY="17.0" mnemonicParsing="false" onAction="#newStorageClick" text="Tạo Kho Mới" />
+      <Label fx:id="infoStorage" layoutX="558.0" layoutY="47.0" prefHeight="17.0" prefWidth="307.0" />
+      <DatePicker fx:id="datePicker" layoutX="679.0" layoutY="298.0" promptText="chọn ngày nhập" />
+      <Button fx:id="suathongtinkho" layoutX="15.0" layoutY="43.0" mnemonicParsing="false" onAction="#suaThongTinKho" text="Sửa thông tin kho" />
+      <Button layoutX="15.0" layoutY="17.0" mnemonicParsing="false" onAction="#xemThongTinKho" text="Xem thông tin kho" />
+      <TextField fx:id="nhapmakho" layoutX="221.0" layoutY="17.0" />
+      <TextField fx:id="nhapdiachikho" layoutX="221.0" layoutY="52.0" />
+      <Label fx:id="nhapmakho1" layoutX="173.0" layoutY="21.0" text="Mã Kho" />
+      <Label fx:id="nhapdiachikho1" layoutX="152.0" layoutY="56.0" text="Địa Chỉ Kho" />
    </children>
 </AnchorPane>

@@ -16,6 +16,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 public class LoginActivity extends AppCompatActivity {
     private EditText et_email;
     private EditText et_password;
@@ -52,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            intent.putExtra("uid", Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid().toString());
                             startActivity(intent);
                             finishAffinity();
                         } else {

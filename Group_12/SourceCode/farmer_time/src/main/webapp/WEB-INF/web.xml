@@ -7,7 +7,9 @@
   <display-name>Archetype Created Web Application</display-name>
 
   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>timeTable.jsp</welcome-file>
+    <welcome-file>login.jsp</welcome-file>
+    <welcome-file>notFound.jsp</welcome-file>
   </welcome-file-list>
 
   <!-- Định nghĩa servlet có tên helloServlet, gắn với class HelloServlet -->
@@ -21,4 +23,5 @@
     <servlet-name>HelloServlet</servlet-name>
     <url-pattern>/helloservlet</url-pattern>
   </servlet-mapping>
+
 </web-app>

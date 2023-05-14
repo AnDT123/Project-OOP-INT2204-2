@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.oop.patientmanagement.Controller.SearchScreen"
+            prefHeight="500" prefWidth="1200" styleClass="layer1bgColor" stylesheets="@background.css">
+
+    <Text fill="WHITE" layoutX="450.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0"
+          text="Nhập số căn cước công dân để tìm kiếm: ">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Text>
+    <TextField fx:id="tf_searchByCitizenID" alignment="TOP_LEFT" layoutX="500.0" layoutY="70.0"
+               prefWidth="200"/>
+    <Button layoutX="560.0" layoutY="120.0" mnemonicParsing="false" onAction="#SearchInformationPatient"
+            prefHeight="36.0" prefWidth="80" text="Tìm kiếm">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Button>
+    <Text fx:id="textNoResults" fill="WHITE" layoutX="520.0" layoutY="275.0" strokeType="OUTSIDE"
+          visible="false" strokeWidth="0.0" text="Không tìm thấy kết quả">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Text>
+    <Text fx:id="textShowResults" fill="WHITE" layoutX="35.0" layoutY="215.0" strokeType="OUTSIDE"
+          visible="false" strokeWidth="0.0" text="Kết quả tìm kiếm">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Text>
+    <Text fx:id="textDateTime" fill="WHITE" layoutX="410.0" layoutY="215.0" strokeType="OUTSIDE"
+          visible="false" strokeWidth="0.0" text="Ngày khám">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Text>
+    <Text fx:id="textDiseaseName" fill="WHITE" layoutX="580.0" layoutY="215.0" strokeType="OUTSIDE"
+          visible="false" strokeWidth="0.0" text="Tên bệnh">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Text>
+    <Text fx:id="textMedicine" fill="WHITE" layoutX="750.0" layoutY="215.0" strokeType="OUTSIDE"
+          visible="false" strokeWidth="0.0" text="Đơn thuốc">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Text>
+    <Text fx:id="textAdvice" fill="WHITE" layoutX="950.0" layoutY="215.0" strokeType="OUTSIDE"
+          visible="false" strokeWidth="0.0" text="Dặn dò">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Text>
+    <Text fx:id="textPatientName" fill="WHITE" layoutX="35.0" layoutY="265.0" strokeType="OUTSIDE"
+          visible="false" strokeWidth="0.0" text="Tên bệnh nhân: ">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Text>
+    <Text fx:id="textDateOfBirth" fill="WHITE" layoutX="35.0" layoutY="305.0" strokeType="OUTSIDE"
+          visible="false" strokeWidth="0.0" text="Ngày sinh: ">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Text>
+    <Text fx:id="textGender" fill="WHITE" layoutX="35.0" layoutY="345.0" strokeType="OUTSIDE"
+          visible="false" strokeWidth="0.0" text="Giới tính: ">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Text>
+    <Text fx:id="textCitizenID" fill="WHITE" layoutX="35.0" layoutY="385.0" strokeType="OUTSIDE"
+          visible="false" strokeWidth="0.0" text="Số căn cước: ">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Text>
+    <Text fx:id="textAddress" fill="WHITE" layoutX="35.0" layoutY="425.0" strokeType="OUTSIDE"
+          visible="false" strokeWidth="0.0" text="Địa chỉ: " wrappingWidth="290">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Text>
+    <Text fx:id="textShowInform" fill="WHITE" layoutX="407.5" layoutY="265.0" strokeType="OUTSIDE"
+          visible="false" strokeWidth="0.0">
+        <font>
+            <Font size="18"/>
+        </font>
+    </Text>
+    <Button layoutX="1137.0" layoutY="470.0" mnemonicParsing="false" onAction="#BackToMain"
+            prefHeight="30.0" prefWidth="63.0" text="⏪ Trở lại">
+        <font>
+            <Font size="12.0"/>
+        </font>
+    </Button>
+
+</AnchorPane>

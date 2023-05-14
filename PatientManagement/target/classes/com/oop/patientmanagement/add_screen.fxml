@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.oop.patientmanagement.Controller.AddScreen"
+            prefHeight="500.0" prefWidth="1200" stylesheets="@background.css" styleClass="layer1bgColor">
+
+    <Text fill="WHITE" layoutX="500.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0"
+          text="Nhập thông tin bệnh nhân: ">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Text>
+    <Text fill="WHITE" layoutX="35.0" layoutY="185.0" strokeType="OUTSIDE"
+          strokeWidth="0.0" text="Thông tin cá nhân">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Text>
+    <Text fill="WHITE" layoutX="690" layoutY="135.0" strokeType="OUTSIDE"
+          strokeWidth="0.0" text="Thông tin căn bệnh và điều trị">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Text>
+    <Text fill="WHITE" layoutX="410.0" layoutY="185.0" strokeType="OUTSIDE"
+          strokeWidth="0.0" text="Ngày khám">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Text>
+    <Text fill="WHITE" layoutX="580.0" layoutY="185.0" strokeType="OUTSIDE"
+          strokeWidth="0.0" text="Tên bệnh">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Text>
+    <Text fill="WHITE" layoutX="750.0" layoutY="185.0" strokeType="OUTSIDE"
+          strokeWidth="0.0" text="Đơn thuốc">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Text>
+    <Text fill="WHITE" layoutX="950.0" layoutY="185.0" strokeType="OUTSIDE"
+          strokeWidth="0.0" text="Dặn dò">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Text>
+    <Text fill="WHITE" layoutX="35.0" layoutY="235.0" strokeType="OUTSIDE"
+          strokeWidth="0.0" text="Tên bệnh nhân: ">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Text>
+    <TextField fx:id="tfPatientName" alignment="TOP_LEFT" layoutX="175.0"
+               layoutY="215.0" prefWidth="195">
+        <font>
+            <Font size="15.0"/>
+        </font>
+    </TextField>
+    <Text fill="WHITE" layoutX="35.0" layoutY="285.0" strokeType="OUTSIDE"
+          strokeWidth="0.0" text="Ngày sinh: ">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Text>
+    <TextField fx:id="tfDateOfBirth" alignment="TOP_LEFT" layoutX="145.0"
+               layoutY="265.0" prefWidth="105">
+        <font>
+            <Font size="15.0"/>
+        </font>
+    </TextField>
+    <Text fill="WHITE" layoutX="35.0" layoutY="335.0" strokeType="OUTSIDE"
+          strokeWidth="0.0" text="Giới tính: ">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Text>
+    <TextField fx:id="tfGender" alignment="TOP_LEFT" layoutX="135.0"
+               layoutY="315.0" prefWidth="95">
+        <font>
+            <Font size="15.0"/>
+        </font>
+    </TextField>
+    <Text fill="WHITE" layoutX="35.0" layoutY="385.0" strokeType="OUTSIDE"
+          strokeWidth="0.0" text="Số căn cước: ">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Text>
+    <TextField fx:id="tfCitizenID" alignment="TOP_LEFT" layoutX="170.0"
+               layoutY="365.0" prefWidth="165">
+        <font>
+            <Font size="15.0"/>
+        </font>
+    </TextField>
+    <Text fill="WHITE" layoutX="35.0" layoutY="435.0" strokeType="OUTSIDE"
+          strokeWidth="0.0" text="Địa chỉ: " wrappingWidth="290">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Text>
+    <TextField fx:id="tfAddress" alignment="TOP_LEFT" layoutX="110.0"
+               layoutY="415.0" prefWidth="255">
+        <font>
+            <Font size="15.0"/>
+        </font>
+    </TextField>
+    <TextField fx:id="tfDateTime" alignment="TOP_LEFT" layoutX="403.5"
+               layoutY="215.0" prefWidth="105">
+        <font>
+            <Font size="15.0"/>
+        </font>
+    </TextField>
+    <Text fill="WHITE" layoutX="655.0" layoutY="235.0" strokeType="OUTSIDE"
+          strokeWidth="0.0" text="Lưu ý: Nhập đúng theo format: Tên bệnh - Đơn thuốc - Dặn dò" wrappingWidth="390">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Text>
+    <TextArea fx:id="tfDiseaseInformation" layoutX="560" layoutY="215.0"
+              prefWidth="545" wrapText="true"
+              prefHeight="170" style="-fx-control-inner-background: #2D2A2A; -fx-prompt-text-fill: #AEAEAE;"
+              promptText="Lưu ý: Mỗi bản ghi nằm trên một dòng, nhập đúng theo format sau: Tên bệnh - Đơn thuốc - Dặn dò">
+        <font>
+            <Font size="16.0"/>
+        </font>
+    </TextArea>
+    <Button layoutX="782" layoutY="410.0" mnemonicParsing="false" onAction="#complete"
+            prefHeight="30.0" prefWidth="101.0" text="Hoàn thành">
+        <font>
+            <Font size="16.0"/>
+        </font>
+    </Button>
+    <Button layoutX="1137.0" layoutY="470.0" mnemonicParsing="false" onAction="#BackToMain"
+            prefHeight="30.0" prefWidth="63.0" text="⏪ Trở lại">
+        <font>
+            <Font size="12.0"/>
+        </font>
+    </Button>
+</AnchorPane>

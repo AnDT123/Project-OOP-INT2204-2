@@ -1,71 +1,49 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="showProject"><i class="fas fa-tree mr-2"></i>&emsp;TIME</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="showProject">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="showTask">Tasks</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="timeTable.jsp">Time Table</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="plants">Plants</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="getData">Weather</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="getCalendar"> Calendar </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="login.jsp" onclick="confirmLogout(event)" tabindex="-1" aria-disabled="true">Log
+            out</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+<script>
+  function confirmLogout(event) {
+    // Hiển thị hộp thoại xác nhận
+    var confirmation = confirm("Are you sure want to log out?");
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css" />
-
-    <!-- Style CSS -->
-    <link rel="stylesheet" href="../css/output.css" />
-
-    <title>FIO Team</title>
-  </head>
-  <body>
-    <nav class="navbar navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button
-            type="button"
-            class="navbar-toggle collapsed"
-            data-toggle="collapse"
-            data-target="#navbar"
-            aria-expanded="false"
-            aria-controls="navbar"
-          >
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span> <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a href="#"><img id="logo" src="images/logo.jpg" alt="Intense" /></a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <div class="nav navbar-nav socials text-center">
-            <a href="#"><span class="fa fa-facebook"></span></a>
-            <a href="#"><span class="fa fa-twitter"></span></a>
-            <a href="#"><span class="fa fa-google-plus"></span></a>
-            <a href="#"><span class="fa fa-linkedin"></span></a>
-          </div>
-          <div class="nav navbar-nav navbar-right text-center">
-            <a class="nav-btn" href="#">Get Started</a>
-          </div>
-        </div>
-      </div>
-    </nav>
-    <!-- /nav -->
-
-    <header class="header-container" data-parallax="scroll" src="images/bg.jpg">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-7">
-            <h1 class="hero-heading">
-              Ultimate Solutions for Your Digital Needs
-            </h1>
-            <p class="hero-desc">
-              Intense provides a variety of services and products for successful
-              development of your business. Promote your company with us in just
-              a few clicks!
-            </p>
-            <a class="main-btn" href="#">Get Started</a>
-          </div>
-        </div>
-      </div>
-    </header>
-  </body>
-</html>
+    if (!confirmation) {
+      event.preventDefault(); // Ngăn chặn hành động mặc định của form
+    }
+  }
+</script>

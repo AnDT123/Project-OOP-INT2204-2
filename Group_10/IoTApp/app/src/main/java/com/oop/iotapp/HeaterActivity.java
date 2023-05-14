@@ -42,6 +42,8 @@ import java.util.Locale;
 
 public class HeaterActivity extends AppCompatActivity {
 
+    private String uid, port = "192.168.1.96", uri = "1883";
+
     private ArrayAdapter<String> adapter = null;
     private List<String> listDevices = new ArrayList<>();
 
@@ -54,14 +56,27 @@ public class HeaterActivity extends AppCompatActivity {
 
     private DatabaseReference myRef;
 
+    private MqttHandler mqttHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_heater);
 
+        uid = getIntent().getStringExtra("uid");
+        port = getIntent().getStringExtra("port");
+        uri = getIntent().getStringExtra("uri");
+
+        try {
+            mqttHandler  = new MqttHandler();
+            mqttHandler.connect("tcp://"+uri+":"+port, "heater", this.getApplicationContext());
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
         initViews();
 
-        myRef = FirebaseDatabase.getInstance("https://ntiot-741e0-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Heater");
+        myRef = FirebaseDatabase.getInstance("https://ntiot-741e0-default-rtdb.asia-southeast1.firebasedatabase.app").getReference(uid+"/Heater");
 
         getListHeater();
 
@@ -121,6 +136,7 @@ public class HeaterActivity extends AppCompatActivity {
         String selected = actv_devices.getText().toString();
         if (!selected.equals("")) {
             myRef.child(selected).child("timerMode").setValue(0L);
+            mqttHandler.publish("heater/"+selected+"/timer_mode", "0");
         }
 //        bt_timerOff.setBackgroundColor(ContextCompat.getColor(this ,R.color.second_light));
 //        bt_timerOff.setClickable(false);
@@ -134,6 +150,7 @@ public class HeaterActivity extends AppCompatActivity {
         String selected = actv_devices.getText().toString();
         if (!selected.equals("")) {
             myRef.child(selected).child("timerMode").setValue(1L);
+            mqttHandler.publish("heater/"+selected+"/timer_mode", "1");
         }
 //        bt_timerOn.setBackgroundColor(ContextCompat.getColor(this ,R.color.second_light));
 //        bt_timerOn.setClickable(false);
@@ -147,6 +164,7 @@ public class HeaterActivity extends AppCompatActivity {
         String selected = actv_devices.getText().toString();
         Long heater = (long) sl_heater.getValue();
         myRef.child(selected).child("heater").setValue(heater);
+        mqttHandler.publish("heater/"+selected+"/set_heater", Long.toString(heater));
     }
 
     private void setStop() {
@@ -161,6 +179,7 @@ public class HeaterActivity extends AppCompatActivity {
                 minute[0] = selectedMinute;
                 tv_timerSetStop.setText(String.format(Locale.getDefault(), "%02d:%02d", hour[0], minute[0]));
                 myRef.child(selected).child("timerStop").setValue(String.format(Locale.getDefault(), "%02d:%02d", hour[0], minute[0]));
+                mqttHandler.publish("heater/"+selected+"/time_stop", String.format(Locale.getDefault(), "%02d:%02d", hour[0], minute[0]));
             }
         };
 
@@ -181,6 +200,7 @@ public class HeaterActivity extends AppCompatActivity {
                 minute[0] = selectedMinute;
                 tv_timerSetStart.setText(String.format(Locale.getDefault(), "%02d:%02d", hour[0], minute[0]));
                 myRef.child(selected).child("timerStart").setValue(String.format(Locale.getDefault(), "%02d:%02d", hour[0], minute[0]));
+                mqttHandler.publish("heater/"+selected+"/time_start", String.format(Locale.getDefault(), "%02d:%02d", hour[0], minute[0]));
             }
         };
 
@@ -194,6 +214,7 @@ public class HeaterActivity extends AppCompatActivity {
         String selected = actv_devices.getText().toString();
         if (!selected.equals("")) {
             myRef.child(selected).child("status").setValue(0L);
+            mqttHandler.publish("heater/"+selected+"/status", "0");
         }
 //        bt_statusOff.setBackgroundColor(ContextCompat.getColor(this ,R.color.second_light));
 //        bt_statusOff.setClickable(false);
@@ -207,6 +228,7 @@ public class HeaterActivity extends AppCompatActivity {
         String selected = actv_devices.getText().toString();
         if (!selected.equals("")) {
             myRef.child(selected).child("status").setValue(1L);
+            mqttHandler.publish("heater/"+selected+"/status", "1");
         }
 
     }
@@ -241,8 +263,7 @@ public class HeaterActivity extends AppCompatActivity {
         View view = getLayoutInflater().inflate(R.layout.layout_add_device, null);
 
         EditText et_deviceName = view.findViewById(R.id.edittext_name_add);
-        EditText et_deviceAddress = view.findViewById(R.id.edittext_address_add);
-        EditText et_devicePort = view.findViewById(R.id.edittext_port_add);
+
         Button bt_addDevice = view.findViewById(R.id.button_add_add);
         bt_addDevice.setOnClickListener(e -> {
             String newDevice = et_deviceName.getText().toString();

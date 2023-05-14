@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.*?>
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml" styleClass="body"
+      stylesheets="@background.css"
+      fx:controller="com.oop.patientmanagement.Controller.MainController">
+
+    <Pane layoutY="-14.0" prefHeight="500.0" prefWidth="1200">
+        <effect>
+            <Blend/>
+        </effect>
+        <Label contentDisplay="CENTER" layoutX="387.5" layoutY="15.0" prefHeight="75.0"
+               prefWidth="500.0" text="HỆ THỐNG QUẢN LÝ BỆNH NHÂN" textAlignment="CENTER"
+               textFill="#171717">
+            <font>
+                <Font size="30.0"/>
+            </font>
+        </Label>
+        <Button blendMode="GREEN" cache="true" layoutX="500.0" layoutY="109.0" mnemonicParsing="false"
+                onAction="#searchPatient" prefHeight="40.0" prefWidth="200.0" text="Tìm kiếm bệnh nhân">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Button>
+        <Button blendMode="GREEN" layoutX="500.0" layoutY="164.0" mnemonicParsing="false"
+                onAction="#addPatient" prefHeight="40.0" prefWidth="200.0" text="Thêm bệnh nhân">
+            <font>
+                <Font size="18.0"/>
+            </font>
+            <effect>
+                <Blend/>
+            </effect>
+        </Button>
+        <Button blendMode="GREEN" layoutX="500.0" layoutY="219.0"
+                mnemonicParsing="false" onAction="#editPatient" prefHeight="40.0" prefWidth="200.0"
+                text="Chỉnh sửa bệnh nhân">
+            <font>
+                <Font size="18.0"/>
+            </font>
+            <effect>
+                <Blend/>
+            </effect>
+        </Button>
+        <Button blendMode="GREEN" layoutX="500.0" layoutY="274.0" mnemonicParsing="false"
+                onAction="#removePatient" prefHeight="40.0" prefWidth="200.0" text="Xoá bệnh nhân">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Button>
+        <Button blendMode="SOFT_LIGHT" layoutX="500.0" layoutY="329.0" mnemonicParsing="false"
+                onAction="#exit" prefHeight="40.0" prefWidth="200.0" text="Thoát">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Button>
+    </Pane>
+
+</VBox>

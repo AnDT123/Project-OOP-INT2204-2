@@ -10,12 +10,18 @@ pageEncoding="UTF-8" %>
     <br />
     <a href="/farmer_time/helloservlet">Hello Servlet</a>
     <br />
-    <a href="test.jsp">Hello Test</a>
+    <a href="todoList.jsp">Todo List</a>
     <br />
-    <a href="components/footer.jsp">Footer</a>
+    <a href="timeTable.jsp">Time Table</a>
     <br />
-    <a href="components/header.jsp">Header</a>
+    <a href="getCalendar">Calendar</a>
+    <br />
+    <a href="signup.jsp">Signup</a>
     <br />
     <a href="login.jsp">Login</a>
+    <br />
+    <a href="showProject">Project</a>
+    <br />
+    <a href="getData">Weather App</a>
   </body>
 </html>

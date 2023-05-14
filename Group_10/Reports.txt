@@ -6,3 +6,13 @@ Báo cáo tiến độ:
 * Tuần 10:
   - Thêm login - register cho app
   - Tuy nhiên app đang bị crash, nhóm đang tìm cách khắc phục sớm nhất có thể
+* Tuần 11 - 12:
+  - Hoàn thiện tất cả các giao diện 
+  - Hoàn thành các chức năng cơ bản
+* Tuần 13:
+  - Sử dụng firebase thay thế cho SQLite
+  - Hoàn thiện database
+* Tuần 14:
+  - Thêm Paho MQTT cho app
+  - Hoàn thành việc áp dụng MQTT
+  - Hoàn thành app

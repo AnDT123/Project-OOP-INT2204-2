@@ -15,24 +15,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.google.android.material.circularreveal.cardview.CircularRevealCardView
-            android:id="@+id/cardview_user"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="15dp"
-            android:clickable="true"
-            android:focusable="true"
-            app:cardCornerRadius="160dp">
+<!--        <com.google.android.material.circularreveal.cardview.CircularRevealCardView-->
+<!--            android:id="@+id/cardview_user"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:layout_marginEnd="15dp"-->
+<!--            android:clickable="true"-->
+<!--            android:focusable="true"-->
+<!--            app:cardCornerRadius="160dp">-->
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:contentDescription="user avatar"
-                android:src="@drawable/ic_user" />
+<!--            <ImageView-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:contentDescription="user avatar"-->
+<!--                android:src="@drawable/ic_user" />-->
 
-        </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+<!--        </com.google.android.material.circularreveal.cardview.CircularRevealCardView>-->
 
         <!--        Back-->
 

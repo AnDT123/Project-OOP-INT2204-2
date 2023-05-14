@@ -1,7 +1,6 @@
 package com.oop.iotapp;
 
 public class User{
-    private Long id;
     private String username;
     private String email;
     private String password;
@@ -12,25 +11,10 @@ public class User{
         this.password = "null";
     }
 
-    public User(Long id, String username, String email, String password) {
-        this.id = id;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-    }
-
     public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getUsername() {

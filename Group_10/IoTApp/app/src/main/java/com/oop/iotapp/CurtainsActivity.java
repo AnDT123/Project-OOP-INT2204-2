@@ -6,10 +6,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.app.Service;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,6 +25,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.slider.Slider;
 import com.google.firebase.database.DataSnapshot;
@@ -28,6 +34,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,17 +48,36 @@ public class CurtainsActivity extends AppCompatActivity{
     private DatabaseReference myRef;
 
     private AutoCompleteTextView actv_devices;
-    private MaterialButton bt_addDevice, bt_deleteDevice, bt_statusOn, bt_statusOff, bt_percentConfirm, bt_autoOn, bt_autoOff, bt_back;
+    private MaterialButton bt_addDevice, bt_deleteDevice, bt_statusOn, bt_statusOff, bt_percentConfirm, bt_autoOn, bt_autoOff;
+    private MaterialCardView cv_back;
     private Slider sl_percent;
+
+    private MqttHandler mqttHandler;
+
+    private String uid, port = "192.168.1.96", uri = "1883";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_curtains);
 
+        uid = getIntent().getStringExtra("uid");
+        port = getIntent().getStringExtra("port");
+        uri = getIntent().getStringExtra("uri");
+
+        try {
+            mqttHandler  = new MqttHandler();
+            mqttHandler.connect("tcp://"+uri+":"+port, "curtains", this.getApplicationContext());
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
         initViews();
 
-        myRef = FirebaseDatabase.getInstance("https://ntiot-741e0-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Curtains");
+
+        myRef = FirebaseDatabase.getInstance("https://ntiot-741e0-default-rtdb.asia-southeast1.firebasedatabase.app").getReference(uid+"/Curtains");
+
+//        Toast.makeText(this, uid, Toast.LENGTH_SHORT).show();
 
         getListCurtains();
 
@@ -62,9 +90,10 @@ public class CurtainsActivity extends AppCompatActivity{
 
         Toast.makeText(this, "Vui lòng chọn thiết bị", Toast.LENGTH_SHORT).show();
 
-        bt_back.setOnClickListener(e -> {
+        cv_back.setOnClickListener(e -> {
             Intent intentBack = new Intent(this, MainActivity.class);
             startActivity(intentBack);
+            this.finish();
         });
 
         bt_addDevice.setOnClickListener(e -> {
@@ -101,6 +130,7 @@ public class CurtainsActivity extends AppCompatActivity{
         String selected = actv_devices.getText().toString();
         Long percent = (long) sl_percent.getValue();
         myRef.child(selected).child("percent").setValue(percent);
+        mqttHandler.publish("curtains/"+selected+"/percent", Long.toString(percent));
     }
 
     private void autoOff() {
@@ -109,6 +139,7 @@ public class CurtainsActivity extends AppCompatActivity{
         if (!selected.equals("")) {
             myRef.child(selected).child("autoMode").setValue(0L);
         }
+        mqttHandler.publish("curtains/"+selected+"/auto_mode", "0");
     }
 
     private void autoOn() {
@@ -116,6 +147,7 @@ public class CurtainsActivity extends AppCompatActivity{
         String selected = actv_devices.getText().toString();
         if (!selected.equals("")) {
             myRef.child(selected).child("autoMode").setValue(1L);
+            mqttHandler.publish("curtains/"+selected+"/auto_mode", "1");
         }
     }
 
@@ -124,6 +156,7 @@ public class CurtainsActivity extends AppCompatActivity{
         String selected = actv_devices.getText().toString();
         if (!selected.equals("")) {
             myRef.child(selected).child("status").setValue(0L);
+            mqttHandler.publish("curtains/"+selected+"/status", "0");
         }
     }
 
@@ -132,6 +165,7 @@ public class CurtainsActivity extends AppCompatActivity{
         String selected = actv_devices.getText().toString();
         if (!selected.equals("")) {
             myRef.child(selected).child("status").setValue(1L);
+            mqttHandler.publish("curtains/"+selected+"/status", "1");
         }
     }
 
@@ -158,15 +192,12 @@ public class CurtainsActivity extends AppCompatActivity{
 
     private void addDevice() {
         Log.e(TAG, "addDevice: Start");
-        Toast.makeText(this, "Oke ?", Toast.LENGTH_SHORT).show();
         AlertDialog.Builder dialog = new AlertDialog.Builder(CurtainsActivity.this);
         dialog.setTitle("THÊM THIẾT BỊ");
 
         View view = getLayoutInflater().inflate(R.layout.layout_add_device, null);
 
         EditText et_deviceName = view.findViewById(R.id.edittext_name_add);
-        EditText et_deviceAddress = view.findViewById(R.id.edittext_address_add);
-        EditText et_devicePort = view.findViewById(R.id.edittext_port_add);
         Button bt_addDevice = view.findViewById(R.id.button_add_add);
         bt_addDevice.setOnClickListener(e -> {
             String newDevice = et_deviceName.getText().toString();
@@ -213,10 +244,16 @@ public class CurtainsActivity extends AppCompatActivity{
         bt_percentConfirm = findViewById(R.id.button_percent_confirm_curtains);
         bt_autoOn = findViewById(R.id.button_autoMode_on_curtains);
         bt_autoOff = findViewById(R.id.button_autoMode_off_curtains);
-        bt_back = findViewById(R.id.cardview_back_curtains);
+        cv_back = findViewById(R.id.cardview_back_curtains);
         sl_percent = findViewById(R.id.slider_percent_curtains);
 
         adapter = new ArrayAdapter<>(this, R.layout.dropdown_item, listDevices);
         actv_devices.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mqttHandler.disconnect();
     }
 }

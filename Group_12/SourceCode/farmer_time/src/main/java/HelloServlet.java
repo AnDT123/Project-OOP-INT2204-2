@@ -20,7 +20,7 @@ public class HelloServlet extends HttpServlet {
          // crate statement
          Statement stmt = conn.createStatement();
          // get data from table 'customers'
-         ResultSet rs = stmt.executeQuery("select * from customers");
+         ResultSet rs = stmt.executeQuery("select * from payments");
 
          String s = "";
          // show data
